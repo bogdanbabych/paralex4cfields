@@ -1,0 +1,153 @@
+Downloading and installing:
+
+1. 
+    http://cwb.sourceforge.net/developers.php
+    >> mac: (works!!!)
+    https://sourceforge.net/projects/cwb/files/
+    
+    
+    tar xvzf cwb-3.0.0-osx-10.5-universal\ \(3\).tar.gz
+    
+    
+    >> alternatives: (did not manage to get it work on Mac)
+    http://cwb.sourceforge.net/developers.php
+    https://trac.macports.org/wiki/Migration 
+        >> macports
+    
+2. checking that it works:
+
+    sudo ./install-cwb.sh
+    echo $PATH
+    cqp
+        DICKENS;
+        "question";
+        q
+        exit;
+        
+3. location of data; installing and checking new corpora:
+    data location
+    /Users/bogdan/data
+    --> 
+
+    dickens
+
+    registry location:
+    /usr/local/share/cwb/registry/
+    /usr/local/share/cwb/registry/dickens    
+    
+
+4. installation of new corpora
+    tar xvzf DemoCorpus-German-1.0.tar.gz
+    tar xvzf Europarl3-CWB-2010-02-28.tar.gz
+    
+    0. edit registry files to show absolute path to the data and the info
+    1. copy registry to registry location;
+    2. copy data to data location;
+    3. test data with 
+        cqp
+        CORPUS;
+        "query";
+        exit;
+
+
+5. installing cwb-python:
+    https://pypi.org/project/cwb-python/#description
+    https://pypi.org/project/cwb-python/#files
+    pip install cwb-python
+    https://files.pythonhosted.org/packages/c3/a3/d1c1074db01a5af22d88720c079c7a8f52efe4b08fde61371b58d9b9f1cc/cwb_python-0.2.2-cp36-cp36m-macosx_10_12_x86_64.whl
+    
+    Project webpage and documentation
+        https://bitbucket.org/yannick/cwb-python
+        
+    
+    trying:
+    pip install cwb-python
+    
+    response:
+
+Collecting cwb-python
+  Downloading https://files.pythonhosted.org/packages/c3/a3/d1c1074db01a5af22d88720c079c7a8f52efe4b08fde61371b58d9b9f1cc/cwb_python-0.2.2-cp36-cp36m-macosx_10_12_x86_64.whl (108kB)
+    100% |████████████████████████████████| 112kB 1.6MB/s
+Requirement already satisfied: cython>=0.19 in /Users/bogdan/anaconda3/lib/python3.6/site-packages (from cwb-python) (0.29.2)
+Requirement already satisfied: setuptools>=17 in /Users/bogdan/anaconda3/lib/python3.6/site-packages (from cwb-python) (40.6.3)
+Requirement already satisfied: six in /Users/bogdan/anaconda3/lib/python3.6/site-packages (from cwb-python) (1.12.0)
+Installing collected packages: cwb-python
+Successfully installed cwb-python-0.2.2
+
+    Testing cwb-python installation:
+    (in interactive mode):
+
+bash-3.2$ python
+Python 3.6.8 |Anaconda custom (64-bit)| (default, Dec 29 2018, 19:04:46)
+[GCC 4.2.1 Compatible Clang 4.0.1 (tags/RELEASE_401/final)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from CWB.CL import Corpus
+>>> corpus=Corpus('DICKENS')
+>>> sentences=corpus.attribute('s','s')
+>>> words=corpus.attribute('word','p')
+>>> postags=corpus.attribute('pos','p')
+>>> s_1234=sentences[1234]
+>>> for w,p in zip(words[s_1234[0]:s_1234[1]+1],postags[s_1234[0]:s_1234[1]+1]):
+... print "%s/%s"%(w,p)
+  File "<stdin>", line 2
+    print "%s/%s"%(w,p)
+        ^
+IndentationError: expected an indented block
+>>> for w,p in zip(words[s_1234[0]:s_1234[1]+1],postags[s_1234[0]:s_1234[1]+1]):
+...     print "%s/%s"%(w,p)
+  File "<stdin>", line 2
+    print "%s/%s"%(w,p)
+                ^
+SyntaxError: invalid syntax
+>>> for w,p in zip(words[s_1234[0]:s_1234[1]+1],postags[s_1234[0]:s_1234[1]+1]):
+...     print("%s/%s"%(w,p))
+...
+Uncle/NP
+Scrooge/NN
+
+
+
+    5.1: install interface -- copy the file from the correct location (should have utf-8 line, not iso encoding line)
+    pip install -e git+https://github.com/chozelinek/PyCQP_interface.git#egg=pycqp-interface
+    
+    
+    --> from:
+    https://github.com/chozelinek/PyCQP_interface
+    
+    result:
+
+bash-3.2$ pip install -e git+https://github.com/chozelinek/PyCQP_interface.git#egg=pycqp-interface
+Obtaining pycqp-interface from git+https://github.com/chozelinek/PyCQP_interface.git#egg=pycqp-interface
+  Cloning https://github.com/chozelinek/PyCQP_interface.git to ./src/pycqp-interface
+Requirement already satisfied: six in /Users/bogdan/anaconda3/lib/python3.6/site-packages (from pycqp-interface) (1.12.0)
+Installing collected packages: pycqp-interface
+  Running setup.py develop for pycqp-interface
+Successfully installed pycqp-interface
+
+
+bash-3.2$ python
+Python 3.6.8 |Anaconda custom (64-bit)| (default, Dec 29 2018, 19:04:46)
+[GCC 4.2.1 Compatible Clang 4.0.1 (tags/RELEASE_401/final)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import PyCQP_interface
+>>> corpus_name = "DICKENS"
+>>> registry_dir = "/usr/local/share/cwb/registry"
+>>> cqp = PyCQP_interface.CQP(bin='/usr/local/bin/cqp', options='-c -r ' + registry_dir)
+CQP version 3.0.0
+>>> cqp.Exec(corpus_name)
+''
+>>> cqp.Query("[]")
+''
+>>> cqp.Exec("size Last")
+'3407085'
+>>> cqp.Terminate()
+>>>
+
+
+
+    5.2. run test script with query interface
+    /Users/bogdan/elisp/paralex4accelerator/tests/test_cqp.py (converted with 2to3, f=file(...) replaced by f=open(...) inside the file)
+    
+    output generated:
+    EUROPARL-DE_absentiv.txt
+

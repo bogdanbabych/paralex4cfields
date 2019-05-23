@@ -1,0 +1,25 @@
+http://cwb.sourceforge.net/cwb4.php
+
+http://cwb.sourceforge.net/files/Ziggurat%20data%20model%201.0.pdf
+http://cwb.sourceforge.net/files/EvertHardie2015.pdf
+
+Documentation:
+    http://cwb.sourceforge.net/documentation.php
+    https://www.youtube.com/user/corpusworkbench/videos 
+        >> mainly CQPWeb
+
+CWB Python    
+https://bitbucket.org/yannick/cwb-python/src/52fda1696114b73278694238813a6f502682da0c/examples/bitext2json.py?at=default&fileviewer=file-view-default
+https://bitbucket.org/yannick/cwb-python/src/52fda1696114b73278694238813a6f502682da0c/examples/bitext2json.py?at=default&fileviewer=file-view-default
+https://bitbucket.org/yannick/cwb-python/src/52fda1696114/examples/?at=default
+https://bitbucket.org/yannick/cwb-python/src/52fda1696114b73278694238813a6f502682da0c/examples/test_cqp.py?at=default&fileviewer=file-view-default
+https://bitbucket.org/yannick/cwb-python/src/52fda1696114b73278694238813a6f502682da0c/examples/?at=default
+https://bitbucket.org/yannick/cwb-python/src/52fda1696114?at=default
+https://bitbucket.org/yannick/cwb-python/src/52fda1696114b73278694238813a6f502682da0c/py_src/PyCQP_interface.py?at=default&fileviewer=file-view-default
+https://bitbucket.org/yannick/cwb-python/src/52fda1696114b73278694238813a6f502682da0c/py_src/?at=default
+
+
+PyCQP interface
+https://pythonhosted.org/cwb-python/
+https://pythonhosted.org/cwb-python/pycqp_interface.html
+https://github.com/chozelinek/PyCQP_interface

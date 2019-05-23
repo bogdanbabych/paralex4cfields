@@ -1,0 +1,1 @@
+python make_bitext.py EUROPARL-EN EUROPARL-DE --ef=bitext-ende.txt

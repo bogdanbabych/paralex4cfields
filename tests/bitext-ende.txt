@@ -1,0 +1,1 @@
+/Users/bogdan/elisp/_ghdata/corp/paralex4accelerator-tests/bitext-ende.txt
